@@ -1,1 +1,14 @@
-# Trafficflowprediction
+![image](https://github.com/AlexandruR17/Trafficflowprediction/assets/121444745/a0bad61d-0c13-4057-97f9-567f6c13a287)# Trafficflowprediction
+![image](https://github.com/AlexandruR17/Trafficflowprediction/assets/121444745/4989e974-faa1-4e63-92eb-b2a35e5399a9)
+![image](https://github.com/AlexandruR17/Trafficflowprediction/assets/121444745/76c2d6e0-0a53-4706-951e-1b2d382b0858)
+![image](https://github.com/AlexandruR17/Trafficflowprediction/assets/121444745/4485c977-7abd-4c39-abd9-9d49a392c804)
+![image](https://github.com/AlexandruR17/Trafficflowprediction/assets/121444745/c8c939e2-e1d8-4fe7-aefa-a31f1774e081)
+![image](https://github.com/AlexandruR17/Trafficflowprediction/assets/121444745/3ad41ed4-8661-492c-a1d8-3fa7c74416de)
+![image](https://github.com/AlexandruR17/Trafficflowprediction/assets/121444745/5f35ea8c-2902-4654-b274-0350c04c0836)
+![image](https://github.com/AlexandruR17/Trafficflowprediction/assets/121444745/16e7ffd4-533a-484c-8dcc-e5080dab5b3f)
+![image](https://github.com/AlexandruR17/Trafficflowprediction/assets/121444745/ef9d58a4-403f-4e37-9d05-d63eca8f0087)
+![image](https://github.com/AlexandruR17/Trafficflowprediction/assets/121444745/180534b0-1452-41a5-8ca8-5d14705541a8)
+![image](https://github.com/AlexandruR17/Trafficflowprediction/assets/121444745/7a17c550-62e8-4fca-8714-92cd5aaba45d)
+![image](https://github.com/AlexandruR17/Trafficflowprediction/assets/121444745/bff0a0c9-dba1-4f17-894d-f5dfcf80b22b)
+![image](https://github.com/AlexandruR17/Trafficflowprediction/assets/121444745/b18eab96-27a3-4b00-8553-4e3ff6d5b092)
+![image](https://github.com/AlexandruR17/Trafficflowprediction/assets/121444745/da4674ff-c12f-4b83-b387-5d36865f1084)
