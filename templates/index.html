@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Predictie Flux Trafic</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f8f8;
+        }
+
+        header {
+            background-color: #4285f4;
+            color: white;
+            text-align: center;
+            padding: 15px;
+        }
+
+        form {
+            margin:auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 400px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input {
+            width: calc(100% - 16px);
+            padding: 8px;
+            margin-bottom: 10px;
+            border: none;
+            border-bottom: 1px solid #ddd;
+            margin-right: 8px;
+        }
+
+        button {
+            background-color: #4285f4;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #3367d6;
+        }
+
+        #rezultate {
+            margin:auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            margin-top: 10px;
+        }
+
+        .fenomen-meteorologic {
+            color: red;
+            margin-top: 10px;
+        }
+
+        #graf_container {
+            margin:auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Predictie flux trafic</h1>
+    </header>
+    <br>
+    <form id="calculeazaForm">
+        <label for="strada_start">Strada de inceput:</label>
+        <input type="text" id="strada_start" name="strada_start" required>
+
+        <label for="strada_destinatie">Strada destinatie:</label>
+        <input type="text" id="strada_destinatie" name="strada_destinatie" required>
+
+        <button type="button" onclick="calculeazaRuta()">Calculeaza ruta</button>
+    </form>
+    <br>
+    <div id="rezultate">
+        <h2>Ruta optima:</h2>
+        <p id="ruta_optima"></p>
+
+        <h2>Ora ajungere estimata:</h2>
+        <p id="ora_sosire_estimata"></p>
+
+        <h2>Statusul traficului:</h2>
+        <p id="trafic_aglomerat"></p>
+
+        <div class="fenomen-meteorologic">
+            <h2>Fenomen meteorologic:</h2>
+            <p id="fenomen_meteorologic"></p>
+            <h2>Timp suplimentar:</h2>
+            <p id="timp_suplimentar"></p>
+        </div>
+    </div>
+
+    <div id="graf_container">
+        <h2>Harta vizuala:</h2>
+        <img id="graf_base64" alt="Optimal Route Graph">
+    </div>
+
+    <div id="grafic_trafic_container">
+        <h2>Grafic evolutie trafic:</h2>
+        <img id="grafic_trafic_base64" alt="Traffic Evolution Graph">
+    </div>
+
+    <script>
+        function calculeazaRuta() {
+            var strada_start = document.getElementById('strada_start').value;
+            var strada_destinatie = document.getElementById('strada_destinatie').value;
+
+            var formData = new FormData();
+            formData.append('strada_start', strada_start);
+            formData.append('strada_destinatie', strada_destinatie);
+
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', '/calculeaza_ruta', true);
+            xhr.onload = function () {
+                if (xhr.status === 200) {
+                    var response = JSON.parse(xhr.responseText);
+                    afiseazaRezultate(response);
+                }
+            };
+            xhr.send(formData);
+        }
+
+        function afiseazaRezultate(response) {
+            document.getElementById('ruta_optima').innerText = response.ruta_optima.join(' -> ');
+            document.getElementById('ora_sosire_estimata').innerText = response.ora_sosire_estimata;
+
+            var traficAglomerat = response.trafic_aglomerat ? 'Trafic aglomerat' : 'Trafic fluid';
+            document.getElementById('trafic_aglomerat').innerText = traficAglomerat;
+
+            document.getElementById('fenomen_meteorologic').innerText = response.fenomen_meteorologic;
+            document.getElementById('timp_suplimentar').innerText = response.timp_suplimentar + ' minute';
+
+            document.getElementById('graf_base64').src = 'data:image/png;base64,' + response.graf_base64;
+            document.getElementById('grafic_trafic_base64').src = 'data:image/png;base64,' + response.grafic_trafic;
+
+
+            var graficPrognoza = document.createElement('img');
+            graficPrognoza.id = 'grafic_prognoza_base64';
+            graficPrognoza.alt = 'Traffic Prediction Graph';
+            graficPrognoza.src = 'data:image/png;base64,' + response.grafic_prognoza;
+            document.getElementById('graf_container').appendChild(graficPrognoza);
+
+
+        }
+    </script>
+</body>
+</html>
